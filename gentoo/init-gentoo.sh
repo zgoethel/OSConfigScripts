@@ -74,13 +74,15 @@ eselect locale set 4
 # Update the environment
 env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
 
+# Prepare the source folders
+emerge --ask sys-kernel/gentoo-sources
 # Copy over the configuration placed in the mounted folder
 cp ./kernel_hardened-min /usr/src/linux/
 emerge --ask sys-kernel/gentoo-sources
 #emerge sys-apps/pciutils lzop app-arch/lz4
 # Compile the kernel!
 cd /usr/src/linux
-mv kernel_hardened-min .config/
+mv kernel_hardened-min .config
 make oldconfig
 
 EOT
