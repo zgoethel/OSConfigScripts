@@ -1,6 +1,6 @@
 #!/bin/bash
 
-$init_home="~/OSConfigScripts-main/gentoo"
+init_home="~/OSConfigScripts-main/gentoo"
 
 cfdisk /dev/sda
 # Set BIOS boot, EFI system, swap, and Linux root
