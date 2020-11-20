@@ -57,7 +57,7 @@ mount /dev/sda2 /boot/
 
 # Sync Gentoo repositories
 emerge-webrsync
-emerge --sync --quiet
+emerge --syncnano -w
 # Long-running command
 emerge --ask --verbose --update --deep --newuse @world
 
@@ -65,17 +65,20 @@ emerge --ask --verbose --update --deep --newuse @world
 echo "America/Chicago" > /etc/timezone
 emerge --config sys-libs/timezone-data
 
-nano -w /etc/locale.gen
+# Set the locale to C.UTF8 (should already be)
+#nano -w /etc/locale.gen
 locale-gen
 eselect locale list
 eselect locale set 4
 
+# Update the environment
 env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
 
+# Copy over the configuration placed in the mounted folder
 cp ./kernel_hardened-min /usr/src/linux/
 emerge --ask sys-kernel/gentoo-sources
 #emerge sys-apps/pciutils lzop app-arch/lz4
-
+# Compile the kernel!
 cd /usr/src/linux
 mv kernel_hardened-min .config/
 make oldconfig
