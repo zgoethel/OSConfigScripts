@@ -26,7 +26,7 @@ links https://gentoo.org/downloads/mirrors/
 tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 
 # Overwrite the portage config
-mv $init_home/portage_make.conf ./etc/portage/make.conf
+mv $init_home/config/portage_make.conf ./etc/portage/make.conf
 # Configure portage make settings
 vi ./etc/portage/make.conf
 # Echo mirrors into the config file
@@ -36,7 +36,7 @@ mirrorselect -i -o >> ./etc/portage/make.conf
 mkdir --parents ./etc/portage/repos.conf/
 cp ./usr/share/portage/config/repos.conf ./etc/portage/repos.conf/gentoo.conf
 # Copy over the kernel config file
-cp $init_home/kernel_hardened-min ./
+cp $init_home/config/kernel_hardened-min ./
 # Copy over DNS info
 cp --dereference /etc/resolv.conf ./etc/
 
