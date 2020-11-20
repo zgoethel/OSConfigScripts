@@ -57,7 +57,7 @@ mount /dev/sda2 /boot/
 
 # Sync Gentoo repositories
 emerge-webrsync
-emerge --syncnano -w
+#emerge --sync -w
 # Long-running command
 emerge --ask --verbose --update --deep --newuse @world
 
