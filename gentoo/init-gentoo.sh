@@ -77,12 +77,15 @@ env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
 # Prepare the source folders
 emerge sys-kernel/gentoo-sources
 # Copy over the configuration placed in the mounted folder
-mv ./kernel_hardened-min /usr/src/linux-*-gentoo/.config
+mv ./kernel_hardened-min /usr/src/linux-*-gentoo/
 #emerge sys-kernel/gentoo-sources
 #emerge sys-apps/pciutils lzop app-arch/lz4
-# Compile the kernel!
 cd /usr/src/linux-*-gentoo/
-#mv kernel_hardened-min .config
+mv kernel_hardened-min .config
 make oldconfig
+
+# Compile the kernel!
+make && make modules install
+make install
 
 EOT
