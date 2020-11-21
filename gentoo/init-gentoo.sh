@@ -59,7 +59,7 @@ mount /dev/sda2 /boot/
 emerge-webrsync
 #emerge --sync -w
 # Long-running command
-emerge --ask --verbose --update --deep --newuse @world
+emerge --verbose --update --deep --newuse @world
 
 # I live in 'America/Chicago' timezone
 echo "America/Chicago" > /etc/timezone
