@@ -77,10 +77,10 @@ env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
 # Prepare the source folders
 emerge sys-kernel/gentoo-sources
 # Copy over the configuration placed in the mounted folder
-mv ./kernel_hardened-min /usr/src/linux-*-gentoo/
+mv ./kernel_hardened-min /usr/src/linux/
 #emerge sys-kernel/gentoo-sources
 #emerge sys-apps/pciutils lzop app-arch/lz4
-cd /usr/src/linux-*-gentoo/
+cd /usr/src/linux/
 mv kernel_hardened-min .config
 make oldconfig
 
