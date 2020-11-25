@@ -21,6 +21,8 @@ device_list=($(fdisk -l | awk -F"Disk /dev/|: .*B, .*sectors" '$2 {print "/dev/"
 #			echo "$i ${device_list[i]} $(if [ "$i" -eq "0" ]; then echo "on"; else echo "off"; fi) ";\
 #		done\
 #	)
+	
+clear
 
 # Disk partitioning loop
 while [[ true ]]
@@ -39,6 +41,8 @@ do
 	
 	# Trigger disk partitioning utility
 	cfdisk $disk_name
+	
+	clear
 done
 
 # Read in and format root partition
@@ -50,6 +54,8 @@ mount $root_partition /mnt
 read -p "Specify a swap partition (swapon): " swap_partition
 mkswap $swap_partition
 swapon $swap_partition
+	
+clear
 
 # Initial setup of mounted root partition
 pacstrap /mnt base linux linux-firmware
@@ -57,7 +63,10 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 cd /mnt
 git clone https://github.com/zgoethel/OSConfigScripts.git
+	
+clear
 
+export PS1="(please chroot) $PS1"
 echo "Please execute 'arch-chroot /mnt' then run the post-chroot script"
 
 # neofetch htop jdk-openjdk vim
