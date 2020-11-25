@@ -61,8 +61,11 @@ clear
 pacstrap /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 
+# Copy the scripts into the new root
 cd /mnt
 git clone https://github.com/zgoethel/OSConfigScripts.git
+mv OSConfigScripts/arch/ setup-scripts/
+rm -R OSConfigScripts/
 	
 clear
 
