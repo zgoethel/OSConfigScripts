@@ -27,7 +27,7 @@ while [[ true ]]
 do
 	# Print disk details and ask for selection
 	echo "Select a disk to partition (blank to continue):"
-	fdisk -l | awk -F"Disk /dev/" '$2 {print "    /dev/" $2}'  
+	fdisk -l | awk -F"Disk /dev/" '$2 {print "    /dev/" $2}'
 
 	read -p "> (disk name) " disk_name
 	
@@ -54,6 +54,9 @@ swapon $swap_partition
 # Initial setup of mounted root partition
 pacstrap /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
+
+cd /mnt
+git clone https://github.com/zgoethel/OSConfigScripts.git
 
 echo "Please execute 'arch-chroot /mnt' then run the post-chroot script"
 
