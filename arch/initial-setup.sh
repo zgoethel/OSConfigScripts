@@ -7,7 +7,7 @@ timedatectl set-ntp true
 
 # Sync packages and install utilities
 pacman -Syy
-pacman -S vim efibootmgr git #dialog
+pacman -S vim git #dialog
 
 # Disk partitioning; obtain list of devices
 device_list=($(fdisk -l | awk -F"Disk /dev/|: .*B, .*sectors" '$2 {print "/dev/" $2}'))

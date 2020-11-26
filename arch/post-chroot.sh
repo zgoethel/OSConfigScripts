@@ -6,7 +6,7 @@ read -p "Enter a timezone (e.g. 'America/Chicago'): " time_zone
 
 # Sync pacman and install some utilities
 pacman -Syy
-pacman -S neofetch htop jdk-openjdk vim git dosfstools grub
+pacman -S neofetch htop jdk-openjdk vim git dosfstools grub efibootmgr
 
 clear
 
