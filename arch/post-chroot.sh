@@ -42,10 +42,11 @@ passwd
 # Mount and format the boot partition
 read -p "Enter the boot partition name: " boot_partition
 mkfs.fat -F 32 $boot_partition
-mount $boot_partition /mnt/boot
+mkdir /mnt/boot/
+mount $boot_partition /mnt/boot/
 
 # Install and configure GRUB bootloader
-grub-install --target=x86_64-efi --efi-directory=/mnt/boot --bootloader-id=GRUB
+grub-install --target=x86_64-efi --efi-directory=/mnt/boot/ --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
 clear
