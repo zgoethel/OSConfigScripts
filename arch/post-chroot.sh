@@ -31,6 +31,7 @@ echo "" >> /etc/hosts
 echo "127.0.0.1	localhost" >> /etc/hosts
 echo "::1		localhost" >> /etc/hosts
 echo "" >> /etc/hosts
+
 echo "127.0.0.1 $host_name.localdomain $host_name" >> /etc/hosts
 
 clear
@@ -41,10 +42,10 @@ passwd
 # Mount and format the boot partition
 read -p "Enter the boot partition name: " boot_partition
 mkfs.fat -F 32 $boot_partition
-mount $boot_partition /mnt/
+mount $boot_partition /mnt/boot
 
 # Install and configure GRUB bootloader
-grub-install --target=x86_64-efi --efi-directory=/mnt/ --bootloader-id=GRUB
+grub-install --target=x86_64-efi --efi-directory=/mnt/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
 clear
@@ -52,12 +53,12 @@ clear
 # Set up systemd DHCP services/resolution
 net_config_file="/etc/systemd/network/20-wired.network"
 echo "Default config for 'eth0' will be written to $net_config_file"
-echo "[Match]" > $net_config_file
+echo "[Match]"    > $net_config_file
 echo "Name=eth0" >> $net_config_file
-echo "" >> $net_config_file
+echo ""          >> $net_config_file
 
 echo "[Network]" >> $net_config_file
-echo "DHCP=yes" >> $net_config_file
+echo "DHCP=yes"  >> $net_config_file
 
 systemctl enable systemd-networkd.service
 systemctl enable systemd-resolved.service
